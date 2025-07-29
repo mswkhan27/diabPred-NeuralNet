@@ -25,14 +25,16 @@ scaler = StandardScaler()
 X_scaled = scaler.fit_transform(X)
 
 # Train/test split
-X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, stratify=y, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.1, stratify=y, random_state=42)
 
 # Build deep learning model
 model = Sequential([
     Dense(64, activation='relu', input_dim=8),
-    Dropout(0.3),
+    Dropout(0.35),
     Dense(32, activation='relu'),
-    Dropout(0.3),
+    Dropout(0.35),
+    Dense(16, activation='relu'),
+    Dropout(0.35),
     Dense(1, activation='sigmoid')
 ])
 model.compile(optimizer=Adam(0.001), loss='binary_crossentropy', metrics=['accuracy'])
